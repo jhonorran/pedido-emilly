@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedido Especial 💖</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9ecf, #ff4da6);
+    overflow: hidden;
+}
+
+h1 {
+    margin-top: 100px;
+    color: white;
+    font-size: 28px;
+}
+
+.container {
+    position: relative;
+    margin-top: 50px;
+}
+
+button {
+    font-size: 20px;
+    padding: 12px 25px;
+    margin: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#sim {
+    background-color: #00cc66;
+    color: white;
+}
+
+#sim:hover {
+    transform: scale(1.1);
+}
+
+#nao {
+    background-color: #ff3333;
+    color: white;
+    position: absolute;
+}
+
+.coracao {
+    position: fixed;
+    top: -10px;
+    color: red;
+    font-size: 20px;
+    animation: cair 5s linear infinite;
+}
+
+@keyframes cair {
+    to {
+        transform: translateY(100vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>💖 Emilly, quer namorar comigo? 💖</h1>
+
+<div class="container">
+    <button id="sim" onclick="aceitou()">Sim 💍</button>
+    <button id="nao" onmouseover="fugir()">Não 😅</button>
+</div>
+
+<script>
+function aceitou() {
+    document.body.innerHTML = `
+        <h1 style="color:white; margin-top:150px;">
+        😍 Agora é oficial, Emilly! 💍<br>
+        Você é a melhor escolha da minha vida ❤️
+        </h1>
+    `;
+    chuvaDeCoracoes();
+}
+
+function fugir() {
+    var botao = document.getElementById("nao");
+    var largura = window.innerWidth - 100;
+    var altura = window.innerHeight - 100;
+
+    var novaPosicaoX = Math.random() * largura;
+    var novaPosicaoY = Math.random() * altura;
+
+    botao.style.left = novaPosicaoX + "px";
+    botao.style.top = novaPosicaoY + "px";
+}
+
+function chuvaDeCoracoes() {
+    setInterval(function() {
+        var coracao = document.createElement("div");
+        coracao.classList.add("coracao");
+        coracao.innerHTML = "❤️";
+        coracao.style.left = Math.random() * 100 + "vw";
+        coracao.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(coracao);
+
+        setTimeout(() => {
+            coracao.remove();
+        }, 5000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
